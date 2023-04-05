@@ -22,8 +22,8 @@ aws_access_key_id = $ACCESS_KEY
 aws_secret_access_key = $SECRET_KEY
 EOF
 
-aws s3api head-bucket --bucket $BUCKET || not_exist=true
-if [ $not_exist ]; then
+if aws s3api head-bucket --bucket "$S3_BUCKET" 2>/dev/null
+then
   echo "Creating bucket $BUCKET"
   aws mb s3://$BUCKET --acl public-read
 else
