@@ -27,6 +27,7 @@ if aws s3api head-bucket --bucket $BUCKET 2>/dev/null;
 then
   echo "Creating bucket $BUCKET"
   aws mb s3://$BUCKET --acl public-read
+fi
 
 aws s3 website s3://$BUCKET --error-document index.html --index-document index.html
 
