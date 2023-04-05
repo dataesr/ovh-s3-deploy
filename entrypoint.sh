@@ -2,6 +2,7 @@
 
 set -e
 echo "Config aws client"
+mkdir ~/.aws
 cat > ~/.aws/config << EOF
 [plugins]
 endpoint = awscli_plugin_endpoint
