@@ -22,11 +22,12 @@ aws_access_key_id = $ACCESS_KEY
 aws_secret_access_key = $SECRET_KEY
 EOF
 
-echo "Config s3 bucket: $BUCKET"
-if aws s3api head-bucket --bucket $BUCKET 2>&1 | grep -q 'NoSuchBucket'
-then
+aws s3api head-bucket --bucket $BUCKET || not_exist=true
+if [ $not_exist ]; then
   echo "Creating bucket $BUCKET"
   aws mb s3://$BUCKET --acl public-read
+else
+  echo "Bucket $BUCKET already exists"
 fi
 
 aws s3 website s3://$BUCKET --error-document index.html --index-document index.html
