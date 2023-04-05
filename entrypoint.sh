@@ -36,4 +36,5 @@ ls -a
 echo "Syncing $SOURCE with $BUCKET"
 aws s3 sync $SOURCE s3://$BUCKET --delete --acl public-read
 
-# echo "deployment=$BUCKET" >> $GITHUB_OUTPUT
+URL="${ENDPOINT//https:\/\/s3/${BUCKET}.s3-website}"
+echo "deployment_url=$URL" >> $GITHUB_OUTPUT

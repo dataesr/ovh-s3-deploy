@@ -1,8 +1,7 @@
-# kubectl-deploy.
+# ovh-s3-deploy.
 
-From https://github.com/myrotvorets/kubectl-action
-
-Make our own to have control over entrypoint.sh
+Deploy static website from react build to ovh s3 buckets.
+Not tested on other object storage providers
 
 ## Usage
 
@@ -20,6 +19,6 @@ deploy:
         secret_key: ${{ secrets.S3_SECRET_KEY }}
         region: gra
         endpoint: https://s3.gra.io.cloud.ovh.net
-        bucket: ${{ github.repository }}
+        bucket: ${{ github.repository_owner }}-${{ github.event.repository.name }}
         source: build
 ```
