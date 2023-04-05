@@ -32,7 +32,7 @@ else
 fi
 aws s3 website s3://$BUCKET --error-document index.html --index-document index.html
 
-ls -a
+echo ls -a
 echo "Syncing $SOURCE with $BUCKET"
 aws s3 sync $SOURCE --delete --acl public-read
 
