@@ -22,7 +22,7 @@ aws_access_key_id = $ACCESS_KEY
 aws_secret_access_key = $SECRET_KEY
 EOF
 
-if aws s3api head-bucket --bucket "$S3_BUCKET" 2>/dev/null
+if aws s3api head-bucket --bucket "$BUCKET" 2>/dev/null
 then
   echo "Bucket $BUCKET already exists"
 else
@@ -32,7 +32,7 @@ else
 fi
 aws s3 website s3://$BUCKET --error-document index.html --index-document index.html
 
-echo ls -a
+cat ls -a
 echo "Syncing $SOURCE with $BUCKET"
 aws s3 sync $SOURCE --delete --acl public-read
 
