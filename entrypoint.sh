@@ -34,6 +34,6 @@ aws s3 website s3://$BUCKET --error-document index.html --index-document index.h
 
 ls -a
 echo "Syncing $SOURCE with $BUCKET"
-aws s3 sync $SOURCE --delete --acl public-read
+aws s3 sync $SOURCE s3://$BUCKET --delete --acl public-read
 
 # echo "deployment=$BUCKET" >> $GITHUB_OUTPUT
