@@ -24,10 +24,10 @@ EOF
 
 if aws s3api head-bucket --bucket "$S3_BUCKET" 2>/dev/null
 then
+  echo "Bucket $BUCKET already exists"
+else
   echo "Creating bucket $BUCKET"
   aws mb s3://$BUCKET --acl public-read
-else
-  echo "Bucket $BUCKET already exists"
 fi
 
 aws s3 website s3://$BUCKET --error-document index.html --index-document index.html
