@@ -18,7 +18,7 @@ inputs:
   bucket:
     description: 's3 bucket name'
     required: false
-    default: ${{ github.repository }}
+    default: ${{ github.repository_owner }}-${{ github.event.repository.name }}
   source:
     description: 'Folder to sync in s3'
     required: false
