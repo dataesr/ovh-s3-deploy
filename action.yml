@@ -1,0 +1,35 @@
+name: 'deploy-s3'
+description: 'Deploy static folders s3'
+inputs:
+  access_key:
+    description: 'Your s3 access key'
+    required: true
+  secret_key:
+    description: 'Your s3 secret key'
+    required: true
+  region:
+    description: 's3 region'
+    required: false
+    default: gra
+  endpoint:
+    description: 's3 endpoint'
+    required: false
+    default: https://s3.gra.io.cloud.ovh.net
+  bucket:
+    description: 's3 bucket name'
+    required: false
+    default: ${{ github.repository }}
+  source:
+    description: 'Folder to sync in s3'
+    required: false
+    default: dist
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    ACCESS_KEY: ${{ inputs.access_key }}
+    SECRET_KEY: ${{ inputs.secret_key }}
+    REGION: ${{ inputs.region }}
+    ENDPOINT: ${{ inputs.endpoint }}
+    BUCKET: ${{ inputs.bucket }}
+    SOURCE: ${{ inputs.source }}
