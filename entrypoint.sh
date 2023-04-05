@@ -23,12 +23,11 @@ aws_secret_access_key = $SECRET_KEY
 EOF
 
 echo "Config s3 bucket: $BUCKET"
-if [ $(aws s3 ls "s3://$BUCKET" | grep 'NoSuchBucket' &> /dev/null) == 0 ] 
+if aws s3api head-bucket --bucket $BUCKET 2>&1 | grep -q 'NoSuchBucket'
 then
   echo "Creating bucket $BUCKET"
   aws mb s3://$BUCKET --acl public-read
 fi
-
 
 aws s3 website s3://$BUCKET --error-document index.html --index-document index.html
 
